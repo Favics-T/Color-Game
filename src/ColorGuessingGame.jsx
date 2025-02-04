@@ -4,9 +4,11 @@ const colors = ["red", "blue", "green", "yellow", "purple", "orange"];
 
 const ColorGuessingGame = () => {
   const [targetColor, setTargetColor] = useState("");
-  const [score, setScore] = useState(0);
+  const [score, setScore] = useState(
+    parseInt(localStorage.getItem("score")) || 0
+  );
   const [message, setMessage] = useState("Guess the correct color!");
-
+  
   useEffect(() => {
     startNewGame();
   }, []);
@@ -15,15 +17,19 @@ const ColorGuessingGame = () => {
     const randomColor = colors[Math.floor(Math.random() * colors.length)];
     setTargetColor(randomColor);
     setMessage("Guess the correct color!");
+    setScore(0)
   };
 
   const handleGuess = (color) => {
     if (color === targetColor) {
       setMessage("Correct! 🎉");
-      setScore(score + 1);
+      setScore((prevScore)=> prevScore + 1);
     } else {
       setMessage("Wrong! Try again.");
     }
+    const newColor = colors[Math.floor(Math.random() * colors.length)];
+    setTargetColor(newColor);
+    
   };
 
   return (

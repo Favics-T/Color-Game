@@ -1,5 +1,6 @@
 The Game:
-You'll build a simple color guessing game. A box shows a random color, and there are 6 buttons with different colors. The goal is to guess which button matches the color shown in the box.
+You'll build a simple color guessing game.
+ A box shows a random color, and there are 6 buttons with different colors. The goal is to guess which button matches the color shown in the box.
 How It Works:
 Target Color Box: This box displays a random color.
 Color Buttons: There are 6 buttons, each showing a different color. One of these is the correct match to the target color.
