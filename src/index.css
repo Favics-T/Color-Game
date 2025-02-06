@@ -6,4 +6,7 @@
     .textInput{
         @apply block m-4 relative left-[10%] px-8 py-2 w-96
     }
+    .colorBoxes{
+        @apply h-10 mx-1 w-16
+    }
 }
