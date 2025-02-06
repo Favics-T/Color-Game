@@ -40,7 +40,7 @@ const tryColorChange=(color)=>{
 
 
   return (
-    <div className='min-h-screen font-serif bg-blue-300 flex flex-col px-4 py-6 text-white mx-10 rounded-xl'>
+    <div className='min-h-screen font-serif bg-blue-300 flex flex-col px-4 py-6 text-white mx-10 rounded-xl overflow-y-hidden'>
 
         <div className='  flex flex-col items-center bg-black  min-h-screen rounded-xl mx-5 px-10 py-10 '>
             <div className=''>
