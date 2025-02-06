@@ -66,7 +66,7 @@ const tryColorChange=(color)=>{
             </div>
            
 {/* House For the six box colors */}
-            <div className='grid grid-cols-3 sm:grid-cols-3 md:grid-cols-6  justify-center mt-4 gap-4 py-4  '>
+            <div className='grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6  justify-center mt-4 gap-4 py-4  '>
 
             {colors.map((color) => (
           <button
