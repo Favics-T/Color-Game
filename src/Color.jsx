@@ -10,22 +10,47 @@ const Color = () => {
   )
 
    
-   function colorChange(color){
-              
-        if(targetColors === color){
-          setMessage('You passed! 🎉')
-          setScore((prevScore)=> prevScore+1)
-        }
-        else{
-          setMessage('you failed');
-          setScore(score);
-        }
+  
+const tryColorChange=(color)=>{
+     if(targetColors === color){
+    setMessage('You Passed!')
+    setScore((prevScore)=> prevScore +1)
+  }
+  else{
+    setMessage('you Failed')
+    setScore(score)
+  }
+  //Using Array destructuring to avoid same color repetition 
+    const newColorArray = [...colors];
+  for(let i = newColorArray.length - 1; i > 0; i--){
+        const randomColorIndex = Math.floor(Math.random()* (i+1));
+    [newColorArray[i],newColorArray[randomColorIndex]]  = [newColorArray[randomColorIndex],newColorArray[i]];
+        
+  }
+  setTargetColors(newColorArray[0]);
+ }
 
-        const randomColor = Math.floor(Math.random()*colors.length)
-        const newTargetColors = colors[randomColor];
-              setTargetColors(newTargetColors);
-                  
-            }
+
+  //  function colorChange(color){
+              
+  //   if(targetColors === color){
+  //     setMessage('You Passed!')
+  //     setScore((prevScore)=> prevScore +1)
+  //   }
+  //   else{
+  //     setMessage('you Failed')
+  //     setScore(score)
+  //   }
+  //   //Using Array destructuring to avoid same color repetition 
+  //     const newColorArray = [...colors];
+  //   for(let i = newColorArray.length - 1; i > 0; i--){
+  //         const randomColorIndex = Math.floor(Math.random()* (i+1));
+  //     [newColorArray[i],newColorArray[randomColorIndex]]  = [newColorArray[randomColorIndex],newColorArray[i]];
+          
+  //   }
+  //   setTargetColors(newColorArray[0]);
+                           
+  //           }
 
                         
 
@@ -35,25 +60,17 @@ const Color = () => {
                           setMessage("Play A game")
               setTargetColors(colors[randomIndex]);
               setScore(0);
+              localStorage.setItem("score","0")
             }
-
-           
-
-            
-
-
-
-    //  
-
 
 
   return (
-    <div className='min-h-screen flex flex-col p-6 text-white'>
+    <div className='min-h-screen font-serif flex flex-col p-6 text-white mx-10 rounded-xl'>
 
-        <div className='flex flex-col items-center bg-black  min-h-screen '>
+        <div className='flex flex-col items-center bg-black  min-h-screen rounded-xl mx-5 px-10 py-10 '>
             <div className=''>
-            <h1 className='text-center text-2xl font-bold mb-4'>Guessing Game</h1>
-            <h1 className='text-2xl font-bold mb-4' data-testid="gameInstructions">Guess The correct Color!</h1>
+            <h1 className='text-center text-2xl font-bold mb-4 text-blue-500'>Guessing Game</h1>
+            <h1 className='text-2xl font-bold mb-4 text-blue-500' data-testid="gameInstructions">Guess The correct Color!</h1>
 
 
             <motion.div 
@@ -70,8 +87,11 @@ const Color = () => {
                      
             </motion.div>
             
+            <div className='text-blue-500 my-2 mx-2 text-2xl'>
             <p>{message} </p>
-            <p>Score:{score} </p>
+            <p>Score:{score} </p> 
+            </div>
+           
 
 {/* House For the six box colors */}
             <div className='grid grid-cols-3 lg-grid lg-grid-cols-6
@@ -82,19 +102,22 @@ const Color = () => {
             key={color}
             className="w-20 h-10 rounded text-white font-bold"
             style={{ backgroundColor: color }}
-            onClick={() => colorChange(color)}
+            onClick={() => tryColorChange(color)}
             data-testid="colorOption"
           >
             
           </button>
         ))}
 
-        <button className='bg-blue-500 text-white rounded-lg
-         w-full px-6 ' 
+       
+            </div>
+            </div>
+
+            <button 
+        className='bg-blue-500 text-white rounded-lg text-center
+         py-1 px-6 ' 
         data-testid="newGameButton"
         onClick={ newGame}>New Game</button>
-            </div>
-            </div>
            
 
         </div>
